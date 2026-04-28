@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLOOM — Natural Skincare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --page: #fff9f5;
+  --white: #ffffff;
+  --coral: #ff6b4a;
+  --coral-light: #ff8f72;
+  --coral-pale: #fff0eb;
+  --lavender: #7c6fcd;
+  --lavender-light: #a99fdf;
+  --lavender-pale: #f0eefb;
+  --mint: #2dbe8f;
+  --mint-pale: #e6faf4;
+  --amber: #f5a623;
+  --ink: #1a1523;
+  --body: #4a4260;
+  --muted: #9490a8;
+  --border: rgba(124,111,205,0.15);
+  --border-coral: rgba(255,107,74,0.2);
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--page); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 4rem;
+  background: rgba(255,249,245,0.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(124,111,205,0.08);
+}
+.nav-logo { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: var(--coral); text-decoration: none; letter-spacing: 0.05em; }
+.nav-logo span { color: var(--lavender); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--body); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--coral); }
+.nav-right { display: flex; align-items: center; gap: 0.75rem; }
+.nav-cart { background: none; border: 1.5px solid var(--border-coral); color: var(--coral); border-radius: 50px; padding: 0.5rem 1.1rem; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--sans); }
+.nav-cart:hover { background: var(--coral-pale); }
+.nav-cta { background: var(--coral); color: white; border: none; border-radius: 50px; padding: 0.55rem 1.4rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--sans); box-shadow: 0 4px 14px rgba(255,107,74,0.35); }
+.nav-cta:hover { background: var(--coral-light); transform: translateY(-1px); }
+
+/* HERO */
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; position: relative; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0; }
+.b1 { width: 500px; height: 500px; background: rgba(124,111,205,0.12); top: -100px; right: 200px; }
+.b2 { width: 350px; height: 350px; background: rgba(255,107,74,0.1); bottom: 50px; left: 100px; }
+.b3 { width: 280px; height: 280px; background: rgba(45,190,143,0.1); top: 30%; right: 0; }
+
+.hero-left { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem; }
+.hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--mint-pale); color: var(--mint); border-radius: 50px; padding: 0.4rem 1rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.75rem; width: fit-content; }
+.bdot { width: 6px; height: 6px; background: var(--mint); border-radius: 50%; }
+h1.hero-headline { font-family: var(--serif); font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 700; line-height: 1.05; margin-bottom: 1.5rem; color: var(--ink); }
+.hero-headline .c { color: var(--coral); font-style: italic; }
+.hero-headline .l { color: var(--lavender); }
+.hero-sub { color: var(--body); font-size: 1rem; max-width: 40ch; margin-bottom: 2.5rem; line-height: 1.8; font-weight: 300; }
+.hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.btn-primary { background: var(--coral); color: white; border: none; border-radius: 50px; padding: 0.9rem 2.2rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.22s; font-family: var(--sans); box-shadow: 0 6px 20px rgba(255,107,74,0.35); }
+.btn-primary:hover { background: var(--coral-light); transform: translateY(-2px); }
+.btn-ghost { background: white; color: var(--lavender); border: 1.5px solid var(--lavender-light); border-radius: 50px; padding: 0.9rem 2rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.22s; font-family: var(--sans); }
+.btn-ghost:hover { background: var(--lavender-pale); transform: translateY(-2px); }
+.hero-stats { margin-top: 2.5rem; display: flex; gap: 2rem; align-items: center; }
+.sstat { text-align: center; }
+.snum { display: block; font-family: var(--serif); font-size: 1.8rem; font-weight: 700; color: var(--ink); line-height: 1; }
+.slbl { font-size: 0.7rem; color: var(--muted); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.2rem; }
+.sdiv { width: 1px; height: 2.5rem; background: var(--border); }
+
+.hero-right { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; padding: 4rem 3rem; }
+.hero-stack { position: relative; width: 380px; height: 480px; }
+.pf { position: absolute; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(124,111,205,0.16); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.pf-main { width: 300px; height: 380px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: linear-gradient(145deg,#fff5f2,#fef0fb,#f0eefb); border: 1.5px solid rgba(124,111,205,0.12); }
+.pf-a1 { width: 130px; height: 84px; top: 12px; right: -18px; background: var(--mint-pale); border: 1px solid rgba(45,190,143,0.2); border-radius: 14px; flex-direction: column; gap: 4px; padding: 0.75rem; }
+.pf-a2 { width: 140px; height: 84px; bottom: 32px; left: -28px; background: var(--lavender-pale); border: 1px solid rgba(124,111,205,0.2); border-radius: 14px; flex-direction: column; gap: 4px; padding: 0.75rem; }
+.albl { font-size: 0.63rem; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
+.aval { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; text-align: center; }
+.asub { font-size: 0.65rem; color: var(--muted); text-align: center; }
+
+/* MARQUEE */
+.marquee-wrap { overflow: hidden; background: var(--lavender); padding: 0.9rem 0; }
+.marquee-inner { display: flex; width: max-content; animation: scroll 30s linear infinite; align-items: center; }
+.marquee-item { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.9); white-space: nowrap; font-weight: 600; padding: 0 2.5rem; }
+.marquee-item::after { content: '✦'; color: rgba(255,255,255,0.45); font-size: 8px; margin-left: 2.5rem; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* FEATURES */
+.ing-section { padding: 6rem 4rem; }
+.spill { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--coral-pale); color: var(--coral); border-radius: 50px; padding: 0.35rem 1rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem; }
+.stitle { font-family: var(--serif); font-size: clamp(2.2rem,3.5vw,3.5rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; color: var(--ink); max-width: 22ch; }
+.stitle em { font-style: italic; color: var(--coral); }
+.stitle .lv { color: var(--lavender); }
+.ssub { color: var(--body); font-size: 0.95rem; max-width: 48ch; line-height: 1.8; margin-bottom: 3.5rem; font-weight: 300; }
+.fg { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.fc { background: white; border-radius: 20px; padding: 2rem 1.75rem; border: 1.5px solid var(--border); box-shadow: 0 2px 12px rgba(124,111,205,0.08); transition: all 0.3s; }
+.fc:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(124,111,205,0.12); border-color: var(--lavender-light); }
+.ficon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.4rem; }
+.ic { background: var(--coral-pale); } .il { background: var(--lavender-pale); } .im { background: var(--mint-pale); }
+.fname { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--ink); }
+.fdesc { font-size: 0.85rem; color: var(--body); line-height: 1.75; font-weight: 300; }
+.ftag { display: inline-block; margin-top: 1rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 50px; }
+.tc { background: var(--coral-pale); color: var(--coral); } .tl { background: var(--lavender-pale); color: var(--lavender); } .tm { background: var(--mint-pale); color: var(--mint); }
+
+/* PRODUCTS */
+.prod-section { padding: 5rem 4rem; background: white; }
+.sec-hdr { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+.view-all { background: none; border: 1.5px solid var(--border-coral); color: var(--coral); border-radius: 50px; padding: 0.55rem 1.4rem; font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: var(--sans); transition: all 0.2s; }
+.view-all:hover { background: var(--coral-pale); }
+.pgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.pcard { background: var(--page); border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(124,111,205,0.08); box-shadow: 0 2px 12px rgba(124,111,205,0.08); transition: all 0.3s; cursor: pointer; }
+.pcard:hover { transform: translateY(-5px); box-shadow: 0 8px 32px rgba(124,111,205,0.12); border-color: rgba(124,111,205,0.2); }
+.pimg { aspect-ratio: 1/1.1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.ibg1 { background: linear-gradient(135deg,#fff5f2,#fde8ff); } .ibg2 { background: linear-gradient(135deg,#f0eefb,#e8f5ff); } .ibg3 { background: linear-gradient(135deg,#e6faf4,#f0eefb); }
+.pbw { position: absolute; top: 1rem; left: 1rem; display: flex; gap: 0.4rem; }
+.pb { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.28rem 0.7rem; border-radius: 50px; }
+.pb-bs { background: var(--coral); color: white; } .pb-new { background: var(--lavender); color: white; } .pb-sale { background: var(--mint); color: white; }
+.pwish { position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; }
+.pwish:hover { transform: scale(1.15); }
+.pcbody { padding: 1.25rem 1.5rem 1.5rem; }
+.pstars { display: flex; gap: 2px; margin-bottom: 0.5rem; }
+.star { font-size: 12px; color: var(--amber); } .rc { font-size: 0.72rem; color: var(--muted); margin-left: 4px; }
+.pname { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+.psub { font-size: 0.8rem; color: var(--body); margin-bottom: 1.25rem; font-weight: 300; }
+.pfooter { display: flex; align-items: center; justify-content: space-between; }
+.pprice { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--ink); }
+.pold { font-size: 0.85rem; color: var(--muted); text-decoration: line-through; font-family: var(--sans); margin-left: 0.4rem; font-weight: 400; }
+.abtn { background: var(--coral); color: white; border: none; border-radius: 50px; padding: 0.55rem 1.2rem; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--sans); box-shadow: 0 4px 12px rgba(255,107,74,0.3); }
+.abtn:hover { background: var(--coral-light); transform: translateY(-1px); }
+
+/* RESULTS */
+.res-section { padding: 6rem 4rem; background: linear-gradient(135deg,var(--lavender-pale),var(--coral-pale)); }
+.rgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+.rstats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.sc { background: white; border-radius: 16px; padding: 1.5rem; text-align: center; box-shadow: 0 2px 12px rgba(124,111,205,0.08); }
+.sn { font-family: var(--serif); font-size: 2.5rem; font-weight: 700; line-height: 1; margin-bottom: 0.4rem; }
+.sc-c { color: var(--coral); } .sc-l { color: var(--lavender); } .sc-m { color: var(--mint); } .sc-a { color: var(--amber); }
+.sd { font-size: 0.8rem; color: var(--body); font-weight: 300; line-height: 1.4; }
+.rcopy h3 { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 1rem; }
+.rcopy h3 em { font-style: italic; color: var(--coral); }
+.rcopy p { color: var(--body); font-size: 0.95rem; line-height: 1.8; font-weight: 300; margin-bottom: 1.5rem; }
+.rbadges { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.rbadge { display: flex; align-items: center; gap: 0.5rem; background: white; border-radius: 50px; padding: 0.45rem 1rem; font-size: 0.75rem; font-weight: 600; color: var(--lavender); box-shadow: 0 2px 8px rgba(124,111,205,0.1); }
+.ck { color: var(--mint); }
+
+/* TESTIMONIALS */
+.testi-section { padding: 6rem 4rem; background: white; }
+.tgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.tc-card { background: var(--page); border-radius: 20px; padding: 1.75rem; border: 1.5px solid var(--border); transition: all 0.3s; }
+.tc-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(124,111,205,0.12); }
+.tstars { display: flex; gap: 3px; margin-bottom: 1rem; }
+.ttext { font-family: var(--serif); font-size: 1rem; font-style: italic; color: var(--ink); line-height: 1.75; margin-bottom: 1.5rem; }
+.tauthor { display: flex; align-items: center; gap: 0.75rem; }
+.tavatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; }
+.av1 { background: var(--coral-pale); color: var(--coral); } .av2 { background: var(--lavender-pale); color: var(--lavender); } .av3 { background: var(--mint-pale); color: var(--mint); }
+.tname { font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+.tloc { font-size: 0.72rem; color: var(--muted); }
+.tver { margin-left: auto; font-size: 0.65rem; font-weight: 700; color: var(--mint); background: var(--mint-pale); padding: 0.25rem 0.65rem; border-radius: 50px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* GUARANTEE */
+.gstrip { background: var(--ink); padding: 2.5rem 4rem; display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+.gi { display: flex; align-items: center; gap: 1rem; }
+.gico { width: 48px; height: 48px; flex-shrink: 0; border-radius: 12px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.gtitle { font-size: 0.85rem; font-weight: 600; color: white; margin-bottom: 0.2rem; }
+.gdesc { font-size: 0.72rem; color: rgba(255,255,255,0.5); }
+
+/* CTA */
+.cta-section { padding: 8rem 4rem; text-align: center; background: linear-gradient(135deg,#fff5f2,#f5f2ff,#f0fdf8); position: relative; overflow: hidden; }
+.cb1 { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: rgba(124,111,205,0.1); filter: blur(60px); top: -100px; left: -100px; pointer-events: none; }
+.cb2 { position: absolute; width: 350px; height: 350px; border-radius: 50%; background: rgba(255,107,74,0.1); filter: blur(60px); bottom: -80px; right: -80px; pointer-events: none; }
+.ctai { position: relative; z-index: 1; }
+.ctag { display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: var(--lavender); border-radius: 50px; padding: 0.4rem 1.1rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; box-shadow: 0 2px 12px rgba(124,111,205,0.08); border: 1.5px solid var(--border); }
+.ctitle { font-family: var(--serif); font-size: clamp(2.5rem,4.5vw,4.5rem); font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 1.5rem; }
+.ctitle em { font-style: italic; color: var(--coral); }
+.csub { color: var(--body); max-width: 46ch; margin: 0 auto 3rem; font-size: 1rem; line-height: 1.8; font-weight: 300; }
+.erow { display: flex; max-width: 460px; margin: 0 auto 1rem; background: white; border-radius: 50px; border: 1.5px solid rgba(124,111,205,0.2); overflow: hidden; box-shadow: 0 8px 32px rgba(124,111,205,0.12); }
+.einput { flex: 1; background: none; border: none; outline: none; padding: 0.9rem 1.5rem; font-size: 0.9rem; color: var(--ink); font-family: var(--sans); min-width: 0; }
+.einput::placeholder { color: var(--muted); }
+.ebtn { background: var(--coral); color: white; border: none; padding: 0.9rem 1.75rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: var(--sans); white-space: nowrap; border-radius: 0 50px 50px 0; transition: background 0.2s; }
+.ebtn:hover { background: var(--coral-light); }
+.cnote { font-size: 0.72rem; color: var(--muted); margin-bottom: 2.5rem; }
+.cactions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+/* FOOTER */
+footer { background: var(--ink); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+.flogo { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--coral); }
+.flogo span { color: var(--lavender-light); }
+.flinks { display: flex; gap: 1.75rem; list-style: none; flex-wrap: wrap; }
+.flinks a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 500; transition: color 0.2s; letter-spacing: 0.04em; }
+.flinks a:hover { color: white; }
+.fcopy { font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; } .hero-left { padding: 6rem 1.5rem 2.5rem; } .hero-right { display: none; }
+  .ing-section, .prod-section, .testi-section, .cta-section { padding: 4rem 1.5rem; }
+  .res-section { padding: 4rem 1.5rem; }
+  .fg, .pgrid, .tgrid { grid-template-columns: 1fr; }
+  .rgrid { grid-template-columns: 1fr; gap: 2rem; }
+  .gstrip { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; }
+  footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">BL<span>OO</span>M</a>
+  <ul class="nav-links">
+    <li><a href="#ing">Ingredients</a></li>
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-cart" id="cartBtn">🛍 Cart (0)</button>
+    <button class="nav-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="hero-left">
+    <div class="hero-badge"><span class="bdot"></span>New Spring Collection</div>
+    <h1 class="hero-headline">
+      Feed your skin<br>with <span class="c">nature's</span><br><span class="l">goodness.</span>
+    </h1>
+    <p class="hero-sub">Clean, plant-powered formulas that actually work. No harsh chemicals, no compromise — just happy, healthy skin from day one.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Explore Collection →</button>
+      <button class="btn-ghost">Watch Story ▷</button>
+    </div>
+    <div class="hero-stats">
+      <div class="sstat"><span class="snum">98%</span><span class="slbl">Love it</span></div>
+      <div class="sdiv"></div>
+      <div class="sstat"><span class="snum">22K+</span><span class="slbl">Happy skin</span></div>
+      <div class="sdiv"></div>
+      <div class="sstat"><span class="snum">4.9★</span><span class="slbl">Avg rating</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stack">
+      <div class="pf pf-main">
+        <svg width="175" height="315" viewBox="0 0 175 315" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="hg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffe0d8"/><stop offset="100%" stop-color="#e8d9ff"/></linearGradient>
+            <linearGradient id="hg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ff6b4a"/><stop offset="100%" stop-color="#a99fdf"/></linearGradient>
+          </defs>
+          <rect x="58" y="10" width="58" height="56" rx="8" fill="url(#hg1)" stroke="rgba(124,111,205,0.2)" stroke-width="1"/>
+          <rect x="66" y="10" width="12" height="56" rx="4" fill="rgba(255,255,255,0.4)"/>
+          <rect x="66" y="64" width="42" height="20" rx="4" fill="url(#hg1)" stroke="rgba(124,111,205,0.12)" stroke-width="0.5"/>
+          <rect x="26" y="82" width="124" height="205" rx="16" fill="url(#hg1)" stroke="rgba(124,111,205,0.15)" stroke-width="1"/>
+          <rect x="34" y="90" width="18" height="185" rx="9" fill="rgba(255,255,255,0.3)"/>
+          <rect x="38" y="108" width="100" height="126" rx="8" fill="white" fill-opacity="0.72"/>
+          <text x="88" y="148" text-anchor="middle" font-family="'Playfair Display',serif" font-size="14" font-weight="700" fill="#1a1523" letter-spacing="3">BLOOM</text>
+          <rect x="50" y="156" width="76" height="2" rx="1" fill="url(#hg2)" opacity="0.5"/>
+          <text x="88" y="172" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="7" fill="#7c6fcd" letter-spacing="2" font-weight="600">RADIANCE SERUM</text>
+          <text x="88" y="186" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="6" fill="#9490a8" letter-spacing="1">30 ML · NATURAL</text>
+          <circle cx="88" cy="212" r="10" fill="none" stroke="rgba(255,107,74,0.25)" stroke-width="1"/>
+          <circle cx="88" cy="212" r="4" fill="rgba(255,107,74,0.2)"/>
+          <line x1="88" y1="199" x2="88" y2="202" stroke="rgba(255,107,74,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="88" y1="222" x2="88" y2="225" stroke="rgba(255,107,74,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="75" y1="212" x2="78" y2="212" stroke="rgba(255,107,74,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="98" y1="212" x2="101" y2="212" stroke="rgba(255,107,74,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="26" y="280" width="124" height="7" rx="3.5" fill="rgba(124,111,205,0.14)"/>
+        </svg>
+      </div>
+      <div class="pf pf-a1">
+        <span class="albl">Rating</span>
+        <span class="aval" style="color:#f5a623">4.9 ★</span>
+        <span class="asub">2,400+ reviews</span>
+      </div>
+      <div class="pf pf-a2">
+        <span class="albl">Formula</span>
+        <span class="aval" style="color:#2dbe8f">100%</span>
+        <span class="asub">Plant-based</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">Free of parabens &amp; sulfates</span>
+    <span class="marquee-item">Clinically tested &amp; dermatologist approved</span>
+    <span class="marquee-item">Cruelty-free &amp; vegan certified</span>
+    <span class="marquee-item">Results in 14 days or full refund</span>
+    <span class="marquee-item">22,000 five-star reviews worldwide</span>
+    <span class="marquee-item">Free shipping on orders over $65</span>
+    <span class="marquee-item">Free of parabens &amp; sulfates</span>
+    <span class="marquee-item">Clinically tested &amp; dermatologist approved</span>
+    <span class="marquee-item">Cruelty-free &amp; vegan certified</span>
+    <span class="marquee-item">Results in 14 days or full refund</span>
+    <span class="marquee-item">22,000 five-star reviews worldwide</span>
+    <span class="marquee-item">Free shipping on orders over $65</span>
+  </div>
+</div>
+
+<section class="ing-section" id="ing">
+  <div class="spill">✦ Why Bloom</div>
+  <h2 class="stitle">Science meets <em>nature</em> —<br>the <span class="lv">Bloom</span> difference</h2>
+  <p class="ssub">Every ingredient is chosen for a reason. We source the cleanest, most potent botanicals and pair them with cutting-edge science to deliver results you can see and feel.</p>
+  <div class="fg">
+    <div class="fc">
+      <div class="ficon ic">🌸</div>
+      <div class="fname">Cherry Blossom Extract</div>
+      <p class="fdesc">Rich in antioxidants and natural AHAs, our Japanese cherry blossom complex brightens and evens skin tone while protecting against environmental stressors.</p>
+      <span class="ftag tc">Brightening</span>
+    </div>
+    <div class="fc">
+      <div class="ficon il">💜</div>
+      <div class="fname">Lavender + Peptide Complex</div>
+      <p class="fdesc">Calming lavender oil paired with 6 targeted peptides that visibly reduce fine lines and boost collagen production in just 4 weeks of regular use.</p>
+      <span class="ftag tl">Anti-aging</span>
+    </div>
+    <div class="fc">
+      <div class="ficon im">🌿</div>
+      <div class="fname">Aloe + Hyaluronic Duo</div>
+      <p class="fdesc">Triple-weighted hyaluronic acid and cold-pressed aloe vera work together to deliver 72-hour moisture lock — even for dry and sensitive skin types.</p>
+      <span class="ftag tm">Hydration</span>
+    </div>
+  </div>
+</section>
+
+<section class="prod-section" id="products">
+  <div class="sec-hdr">
+    <div>
+      <div class="spill">✦ The Collection</div>
+      <h2 class="stitle" style="margin-bottom:0">Your complete <em>ritual</em></h2>
+    </div>
+    <button class="view-all">View all products →</button>
+  </div>
+  <div class="pgrid">
+    <div class="pcard">
+      <div class="pimg ibg1">
+        <div class="pbw"><span class="pb pb-bs">Bestseller</span></div>
+        <div class="pwish" onclick="toggleWish(this)">🤍</div>
+        <svg width="88" height="196" viewBox="0 0 88 196" fill="none">
+          <defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffd6cd"/><stop offset="100%" stop-color="#f0e8ff"/></linearGradient></defs>
+          <rect x="30" y="5" width="28" height="32" rx="5" fill="url(#pg1)" stroke="rgba(255,107,74,0.2)" stroke-width="0.5"/>
+          <rect x="36" y="5" width="8" height="32" rx="3" fill="rgba(255,255,255,0.5)"/>
+          <rect x="22" y="35" width="44" height="14" rx="3" fill="url(#pg1)"/>
+          <rect x="8" y="48" width="72" height="138" rx="10" fill="url(#pg1)" stroke="rgba(124,111,205,0.15)" stroke-width="1"/>
+          <rect x="16" y="56" width="12" height="118" rx="6" fill="rgba(255,255,255,0.4)"/>
+          <rect x="18" y="68" width="52" height="78" rx="6" fill="rgba(255,255,255,0.6)"/>
+          <text x="44" y="104" text-anchor="middle" font-family="'Playfair Display',serif" font-size="8" font-weight="700" fill="#1a1523" letter-spacing="2">BLOOM</text>
+          <text x="44" y="118" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="5" fill="#7c6fcd" letter-spacing="1.5" font-weight="600">SERUM NO.1</text>
+        </svg>
+      </div>
+      <div class="pcbody">
+        <div class="pstars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="rc">(2,418)</span></div>
+        <div class="pname">Radiance Serum No. 1</div>
+        <div class="psub">Cherry Blossom + Vitamin C · 30ml</div>
+        <div class="pfooter">
+          <div><span class="pprice">$88</span></div>
+          <button class="abtn" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pimg ibg2">
+        <div class="pbw"><span class="pb pb-new">New</span></div>
+        <div class="pwish" onclick="toggleWish(this)">🤍</div>
+        <svg width="108" height="108" viewBox="0 0 108 108" fill="none">
+          <defs><linearGradient id="pg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8d9ff"/><stop offset="100%" stop-color="#d4f5ec"/></linearGradient></defs>
+          <circle cx="54" cy="60" r="42" fill="url(#pg2)" stroke="rgba(124,111,205,0.2)" stroke-width="1"/>
+          <circle cx="54" cy="60" r="38" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.5"/>
+          <rect x="42" y="12" width="24" height="16" rx="5" fill="#c5b5f0"/>
+          <rect x="47" y="12" width="6" height="16" rx="2" fill="rgba(255,255,255,0.4)"/>
+          <text x="54" y="56" text-anchor="middle" font-family="'Playfair Display',serif" font-size="9" font-weight="700" fill="#1a1523" letter-spacing="2">BLOOM</text>
+          <text x="54" y="69" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="5.5" fill="#7c6fcd" letter-spacing="1.5" font-weight="600">CLOUD CREAM</text>
+        </svg>
+      </div>
+      <div class="pcbody">
+        <div class="pstars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="rc">(894)</span></div>
+        <div class="pname">Cloud Moisturiser</div>
+        <div class="psub">Lavender Peptide Complex · 50ml</div>
+        <div class="pfooter">
+          <div><span class="pprice">$64</span></div>
+          <button class="abtn" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pimg ibg3">
+        <div class="pbw"><span class="pb pb-sale">Save 20%</span></div>
+        <div class="pwish" onclick="toggleWish(this)">🤍</div>
+        <svg width="78" height="186" viewBox="0 0 78 186" fill="none">
+          <defs><linearGradient id="pg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8f5e6"/><stop offset="100%" stop-color="#e0d9ff"/></linearGradient></defs>
+          <ellipse cx="39" cy="12" rx="13" ry="9" fill="#a8e8cf"/>
+          <rect x="31" y="6" width="16" height="12" rx="5" fill="#7ce8c0"/>
+          <rect x="27" y="18" width="24" height="10" rx="3" fill="url(#pg3)"/>
+          <rect x="9" y="27" width="60" height="150" rx="30" fill="url(#pg3)" stroke="rgba(45,190,143,0.15)" stroke-width="1"/>
+          <rect x="16" y="35" width="10" height="134" rx="5" fill="rgba(255,255,255,0.4)"/>
+          <text x="39" y="99" text-anchor="middle" font-family="'Playfair Display',serif" font-size="8" font-weight="700" fill="#1a1523" letter-spacing="2">BLOOM</text>
+          <text x="39" y="112" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="4.5" fill="#2dbe8f" letter-spacing="1.5" font-weight="600">EYE ELIXIR</text>
+        </svg>
+      </div>
+      <div class="pcbody">
+        <div class="pstars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="color:#ddd">★</span><span class="rc">(612)</span></div>
+        <div class="pname">Dew Eye Elixir</div>
+        <div class="psub">Aloe + Peptide Treatment · 15ml</div>
+        <div class="pfooter">
+          <div><span class="pprice">$52</span><span class="pold">$65</span></div>
+          <button class="abtn" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="res-section" id="results">
+  <div class="spill" style="background:white;color:var(--lavender)">✦ Proven Results</div>
+  <div class="rgrid">
+    <div class="rstats">
+      <div class="sc"><div class="sn sc-c">98%</div><div class="sd">Reported brighter, more even skin tone</div></div>
+      <div class="sc"><div class="sn sc-l">14</div><div class="sd">Days to see visible results, guaranteed</div></div>
+      <div class="sc"><div class="sn sc-m">100%</div><div class="sd">Natural, plant-derived ingredients only</div></div>
+      <div class="sc"><div class="sn sc-a">4.9★</div><div class="sd">Average rating across 22,000+ reviews</div></div>
+    </div>
+    <div class="rcopy">
+      <h3>Formulated to<br><em>actually work.</em></h3>
+      <p>We partnered with leading dermatologists and tested every formula on diverse skin types before launch. Not a single product ships without clinical validation.</p>
+      <p>Our 30-day money-back guarantee isn't a gimmick — it's our confidence in what we've built for you.</p>
+      <div class="rbadges">
+        <div class="rbadge"><span class="ck">✓</span> Dermatologist tested</div>
+        <div class="rbadge"><span class="ck">✓</span> Clinically proven</div>
+        <div class="rbadge"><span class="ck">✓</span> Cruelty-free</div>
+        <div class="rbadge"><span class="ck">✓</span> Non-toxic certified</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testi-section" id="reviews">
+  <div class="spill">✦ Real Stories</div>
+  <h2 class="stitle">Thousands of <em>happy</em> faces</h2>
+  <div class="tgrid">
+    <div class="tc-card">
+      <div class="tstars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="ttext">"I've been through every 'clean beauty' brand out there. Bloom is the first one that makes my sensitive skin feel genuinely nourished. My redness is completely gone."</p>
+      <div class="tauthor"><div class="tavatar av1">SL</div><div><div class="tname">Sophie L.</div><div class="tloc">London, UK</div></div><span class="tver">Verified</span></div>
+    </div>
+    <div class="tc-card">
+      <div class="tstars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="ttext">"The Radiance Serum changed my morning routine forever. In two weeks, people started asking what I'd changed. My skin just looks… alive. I'm obsessed."</p>
+      <div class="tauthor"><div class="tavatar av2">MK</div><div><div class="tname">Maya K.</div><div class="tloc">New York, NY</div></div><span class="tver">Verified</span></div>
+    </div>
+    <div class="tc-card">
+      <div class="tstars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="ttext">"Worth every cent. The Cloud Cream is the only moisturiser that doesn't irritate my eczema-prone skin. Light, absorbs instantly, and keeps me hydrated all day."</p>
+      <div class="tauthor"><div class="tavatar av3">RP</div><div><div class="tname">Rachel P.</div><div class="tloc">Melbourne, AU</div></div><span class="tver">Verified</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="gstrip">
+  <div class="gi"><div class="gico">🔁</div><div><div class="gtitle">30-Day Returns</div><div class="gdesc">Full refund, zero questions</div></div></div>
+  <div class="gi"><div class="gico">🔒</div><div><div class="gtitle">Secure Checkout</div><div class="gdesc">256-bit SSL encrypted</div></div></div>
+  <div class="gi"><div class="gico">🚚</div><div><div class="gtitle">Free Shipping</div><div class="gdesc">On orders over $65</div></div></div>
+  <div class="gi"><div class="gico">🌱</div><div><div class="gtitle">Planet Positive</div><div class="gdesc">Carbon neutral, recyclable</div></div></div>
+</div>
+
+<section class="cta-section">
+  <div class="cb1"></div><div class="cb2"></div>
+  <div class="ctai">
+    <div class="ctag">🎁 Limited offer — 15% off your first order</div>
+    <h2 class="ctitle">Start your <em>glow-up</em><br>journey today.</h2>
+    <p class="csub">Join 22,000+ people who discovered the power of clean, plant-based skincare. Get 15% off your first order — no code needed, just your email.</p>
+    <div class="erow">
+      <input type="email" class="einput" placeholder="Enter your email address" id="emailInput">
+      <button class="ebtn" onclick="handleEmail()">Claim 15% Off</button>
+    </div>
+    <p class="cnote">No spam, ever. Unsubscribe any time. We respect your inbox.</p>
+    <div class="cactions">
+      <button class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop All Products →</button>
+      <button class="btn-ghost" style="font-size:0.9rem">Build a Bundle &amp; Save</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">BL<span>OO</span>M</div>
+  <ul class="flinks">
+    <li><a href="#">Our Story</a></li><li><a href="#">Ingredients</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Rewards</a></li><li><a href="#">Press</a></li><li><a href="#">Contact</a></li>
+  </ul>
+  <div class="fcopy">© 2026 Bloom Skincare. All rights reserved.</div>
+</footer>
+
+<script>
+let cartCount = 0;
+function addToCart(btn) {
+  cartCount++;
+  document.getElementById('cartBtn').textContent = '🛍 Cart (' + cartCount + ')';
+  const orig = btn.textContent;
+  btn.textContent = '✓ Added!';
+  btn.style.background = '#2dbe8f';
+  btn.style.boxShadow = '0 4px 12px rgba(45,190,143,0.35)';
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.boxShadow = ''; }, 1600);
+}
+function toggleWish(el) { el.textContent = el.textContent === '🤍' ? '❤️' : '🤍'; }
+function handleEmail() {
+  const input = document.getElementById('emailInput');
+  const val = input.value.trim();
+  if (!val || !val.includes('@')) { input.style.outline = '2px solid #ff6b4a'; setTimeout(() => { input.style.outline = ''; }, 2000); return; }
+  const btn = document.querySelector('.ebtn');
+  btn.textContent = '🎉 Code sent!';
+  btn.style.background = '#2dbe8f';
+  input.value = ''; input.placeholder = 'Check your inbox for your 15% discount code';
+}
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; e.target.style.transition = 'opacity 0.65s ease, transform 0.65s ease'; } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fc, .pcard, .tc-card, .sc, .gi').forEach((el, i) => {
+  el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+  el.style.transitionDelay = (i % 3 * 0.1) + 's'; io.observe(el);
+});
+</script>
+</body>
+</html>
